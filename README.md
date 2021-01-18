@@ -41,37 +41,24 @@
 | -------       | ------    | ----------- 
 | user          | reference | foreign_key: true
 | item          | reference | foreign_key: true
-| address       | reference | foreign_key: true
-| purchase_date | timestamp | null: false
 
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_many :order_addresses
-- has_many :addresses, through: :order_addresses
+- has_one :address
 
 
 # addressesテーブル
 | Column        | Type      | Options     
 | -------       | ------    | ----------- 
-| post_code     | integer   | null: false
+| post_code     | string    | null: false
 | prefecture_id | integer   | null: false
 | city          | string    | null: false
-| house_number  | integer   | null: false
+| house_number  | string    | null: false
 | building_name | string    | 
-| user          | reference | foreign_key: true
-
-### Association
-- belongs_to :user
-- has_many :orders
-- has_many :orders, through: :order_addresses
-
-# order_addressテーブル
-| Column     | Type      | Options     
-| -------    | ------    | ----------- 
-| order      | reference | foreign_key: true
-| address    | reference | foreign_key: true
+| order         | reference | foreign_key: true
 
 ### Association
 - belongs_to :order
-- belongs_to :addresses
+
+
