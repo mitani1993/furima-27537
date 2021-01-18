@@ -34,15 +34,19 @@
 | price         | integer   | null: false
 | image         |           |
 | category      | reference | foreign_key: true
-| condition     | reference | 
-| shipping_fee  | reference |
-| shipping_area | reference |
-| shipping date | reference |
-| user          | reference |
+| condition     | reference | foreign_key: true
+| shipping_fee  | reference | foreign_key: true
+| shipping_area | reference | foreign_key: true
+| shipping date | reference | foreign_key: true
+| user          | reference | foreign_key: true
 
 ### Association
 - belongs_to :user
 - belongs_to :category, dependent: :destroy
+- belongs_to_active_hash :condition
+- belongs_to_active_hash :shipping_fee
+- belongs_to_active_hash :shipping_area
+- belongs_to_active_hash :shipping date
 
 
 # categoriesテーブル
