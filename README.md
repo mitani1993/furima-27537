@@ -24,7 +24,6 @@
 | name             | string    | null: false
 | content          | text      | null: false
 | price            | integer   | null: false
-| image            |           |
 | category_id      | integer   | foreign_key: true
 | condition_id     | integer   | foreign_key: true
 | shipping_fee_id  | integer   | foreign_key: true
@@ -56,6 +55,7 @@
 | city          | string    | null: false
 | house_number  | string    | null: false
 | building_name | string    | 
+| phone_number  | integer   | unique: true
 | order         | reference | foreign_key: true
 
 ### Association
