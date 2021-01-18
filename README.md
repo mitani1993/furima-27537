@@ -1,24 +1,54 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
+| Column             | Type   | Options     
+| ----------         | ------ | ----------- 
+| nickname           | string | null: false
+| email              | string | null: false, unique: true
+| encrypted_password | string | null: false
 
-Things you may want to cover:
+### Association
+- has_one :profile, dependent: :destroy
+- has_many :items, dependent: :destroy
 
-* Ruby version
+## profilesテーブル
+| Column           | Type      | Options     
+| ----------       | ------    | ----------- 
+| family_name      | string    | null:false
+| first_name       | string    | null:false
+| family_name_kana | string    | null:false
+| first_name_kana  | string    | null:false
+| birth_year       | date      | null:false
+| birth_month      | date      | null:false
+| birth_day        | date      | null:false
+| user             | reference | foreign_key: true
 
-* System dependencies
+### Association
+- belongs_to :user
 
-* Configuration
+# itemsテーブル
+| Column        | Type      | Options     
+| ----------    | ------    | ----------- 
+| name          | string    | null: false
+| content       | text      | null: false
+| price         | integer   | null: false
+| image         |           |
+| category      | reference | foreign_key: true
+| condition     | reference | 
+| shipping_fee  | reference |
+| shipping_area | reference |
+| shipping date | reference |
+| user          | reference |
 
-* Database creation
+### Association
+- belongs_to :user
+- belongs_to :category, dependent: :destroy
 
-* Database initialization
 
-* How to run the test suite
+# categoriesテーブル
+| Column        | Type      | Options     
+| ----------    | ------    | ----------- 
+| name
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- has_many :items
