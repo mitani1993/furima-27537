@@ -28,7 +28,7 @@
 | condition_id     | integer   | foreign_key: true
 | shipping_fee_id  | integer   | foreign_key: true
 | shipping_area_id | integer   | foreign_key: true
-| shipping date_id | integer   | foreign_key: true
+| shipping_date_id | integer   | foreign_key: true
 | user             | reference | foreign_key: true
 
 ### Association
