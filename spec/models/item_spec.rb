@@ -62,9 +62,9 @@ RSpec.describe Item, type: :model do
       end
 
       it '販売価格についての情報が必須であること' do
-        @item.price = nil
+        @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not a number')
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
       it '販売価格は、300円以上であること' do
