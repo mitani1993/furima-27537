@@ -12,4 +12,11 @@ class Item < ApplicationRecord
   validates :price, numericality: { only_integer: true, greater_than: 300, less_than: 9999999 }
 
   belongs_to :user
+  
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :shipping_fee
+  belongs_to :shipping_area
+  belongs_to :shipping_date
 end
