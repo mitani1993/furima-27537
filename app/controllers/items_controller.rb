@@ -17,8 +17,14 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def edit
-  # end
+  def edit
+    @item = Item.find(params[:id])
+    if @item.save
+      redirect_to action: :index
+    else
+      render :new
+    end
+  end
 
   def show
     @item = Item.find(params[:id])
