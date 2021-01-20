@@ -20,8 +20,9 @@ class ItemsController < ApplicationController
   # def edit
   # end
 
-  # def show
-  # end
+  def show
+    @item = Item.find(params[:id])
+  end
 
   # def update
   # end
