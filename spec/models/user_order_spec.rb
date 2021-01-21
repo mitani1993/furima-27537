@@ -63,7 +63,19 @@ RSpec.describe UserOrder, type: :model do
       it '電話番号は10桁もしくは11桁であること' do
         @user_order.phone_number = '090000000'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Phone number is 10 digits or 11 digits')
+        expect(@user_order.errors.full_messages).to include('Phone number is 10 or 11 digit numbers')
+      end
+
+      it '電話番号は11桁以内であること' do
+        @user_order.phone_number = '090000000000'
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include('Phone number is 10 or 11 digit numbers')
+      end
+
+      it '電話番号に英字が含まれると登録できないこと' do
+        @user_order.phone_number = '090abc0000'
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include('Phone number is 10 or 11 digit numbers')
       end
 
       it 'トークンが必須であること' do
