@@ -10,6 +10,11 @@ RSpec.describe UserOrder, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@user_order).to be_valid
       end
+
+      it '建物が空でも保存できる' do
+        @user_order.building_name = nil
+        expect(@user_order).to be_valid
+      end
     end
 
     context 'うまくいかない場合' do
@@ -20,19 +25,19 @@ RSpec.describe UserOrder, type: :model do
       end
 
       it '郵便番号にハイフンがないと保存できない' do
-        @user_order.post_code = nil
-        @user_order.valid?
-        expect(@user_order.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
-      end
-
-      it '郵便番号にハイフンがないと保存できない' do
-        @user_order.post_code = nil
+        @user_order.post_code = '1111111'
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
 
       it '都道府県についての情報が必須であること' do
         @user_order.prefecture_id = 1
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Prefecture can't be blank")
+      end
+
+      it '都道府県についての情報が空だと保存できない' do
+        @user_order.prefecture_id = nil
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Prefecture can't be blank")
       end
