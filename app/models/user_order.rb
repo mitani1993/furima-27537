@@ -7,7 +7,7 @@ class UserOrder
     validates :prefecture_id
     validates :city
     validates :house_number
-    validates :phone_number
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is 10 digits or 11 digits' }
   end
 
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
