@@ -6,6 +6,6 @@ FactoryBot.define do
     house_number { '11-11' }
     building_name { 'スカイビル' }
     phone_number { '09000000000' }
-    token { ENV['PAYJP_PUBLIC_KEY'] }
+    token { 'tok_09871648227' }
   end
 end
