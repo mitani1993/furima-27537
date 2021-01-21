@@ -61,6 +61,11 @@ RSpec.describe UserOrder, type: :model do
         expect(@user_order.errors.full_messages).to include("Phone number is 10 digits or 11 digits")
       end
 
+      it "トークンが必須であること" do
+        @user_order.token = nil
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
