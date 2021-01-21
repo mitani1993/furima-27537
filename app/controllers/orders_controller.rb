@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:user_order).permit(:hoge, :post_code, :prefecture_id, :city, :house_number, :building_name, :phone_number)
+    params.require(:user_order).permit(:post_code, :prefecture_id, :city, :house_number, :building_name, :phone_number)
   end
 
   def move_to_index #出品者がアクセスしたときトップページに飛ばされる

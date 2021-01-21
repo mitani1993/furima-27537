@@ -11,4 +11,9 @@ class UserOrder
   end
 
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+
+  def save
+    Order.create(user_id: current_user.id, item_id: item.id)
+    Address.create(post_code: post_code, prefecture_id: prefecture_id, city: city, house_number: house_number, building_name: building_name, phone_number: phone_number, order_id: order.id)
+  end
 end
