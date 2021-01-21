@@ -9,6 +9,12 @@ class OrdersController < ApplicationController
 
   def create
     @user_order = UserOrder.new(order_params)
+    if @user_order.valid?
+      @user_order.save
+      redirect_to root_path
+    else
+      render :index
+    end
   end
 
   private
