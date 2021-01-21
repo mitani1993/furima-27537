@@ -64,5 +64,4 @@ class ItemsController < ApplicationController
     item = Item.find(params[:id])
     redirect_to root_path unless item.order.blank?
   end
-
 end
