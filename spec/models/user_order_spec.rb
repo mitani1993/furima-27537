@@ -72,7 +72,7 @@ RSpec.describe UserOrder, type: :model do
         expect(@user_order.errors.full_messages).to include('Phone number is 10 or 11 digit numbers')
       end
 
-      it '電話番号に英字が含まれると登録できないこと' do
+      it '電話番号に英字が含まれると保存できないこと' do
         @user_order.phone_number = '090abc0000'
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include('Phone number is 10 or 11 digit numbers')
@@ -82,6 +82,18 @@ RSpec.describe UserOrder, type: :model do
         @user_order.token = nil
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'ユーザー情報がないと保存できない' do
+        @user_order.user_id = nil
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("User can't be blank")
+      end
+
+      it '商品情報がないと保存できない' do
+        @user_order.item_id = nil
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
