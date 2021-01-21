@@ -53,7 +53,8 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def move_to_index #出品者以外がアクセスしたときindexに飛ばされる
+  # 出品者以外がアクセスしたときindexに飛ばされる
+  def move_to_index
     item = Item.find(params[:id])
     redirect_to action: :index unless current_user.id == item.user_id
   end

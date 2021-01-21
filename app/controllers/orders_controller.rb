@@ -18,11 +18,15 @@ class OrdersController < ApplicationController
   end
 
   private
+
   def order_params
-    params.require(:user_order).permit(:post_code, :prefecture_id, :city, :house_number, :building_name, :phone_number)
+    params.require(:user_order).permit(:post_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(
+      user_id: current_user.id, item_id: params[:item_id]
+    )
   end
 
-  def move_to_index #出品者がアクセスしたときトップページに飛ばされる
+  # 出品者がアクセスしたときトップページに飛ばされる
+  def move_to_index
     item = Item.find(params[:item_id])
     redirect_to root_path unless current_user.id != item.user_id
   end
