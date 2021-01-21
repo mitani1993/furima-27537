@@ -51,7 +51,7 @@
 | Column        | Type      | Options     
 | -------       | ------    | ----------- 
 | post_code     | string    | null: false
-| prefecture_id | integer   | foreign_key: true
+| prefecture_id | integer   | null: false
 | city          | string    | null: false
 | house_number  | string    | null: false
 | building_name | string    | 
