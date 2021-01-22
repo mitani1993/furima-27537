@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :move_to_index
   before_action :set_item, only: [:index, :create]
+  before_action :move_to_index
   before_action :purchased_item_move_to_index
 
   def index
@@ -29,8 +29,7 @@ class OrdersController < ApplicationController
 
   # 出品者がアクセスしたときトップページに飛ばされる
   def move_to_index
-    item = Item.find(params[:item_id])
-    redirect_to root_path unless current_user.id != item.user_id
+    redirect_to root_path unless current_user.id != @item.user_id
   end
 
   def set_item
@@ -47,7 +46,6 @@ class OrdersController < ApplicationController
   end
 
   def purchased_item_move_to_index
-    item = Item.find(params[:item_id])
-    redirect_to root_path unless item.order.blank?
+    redirect_to root_path unless @item.order.blank?
   end
 end
