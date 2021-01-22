@@ -82,6 +82,12 @@ RSpec.describe UserOrder, type: :model do
         expect(@user_order.errors.full_messages).to include('Phone number is 10 or 11 digit numbers')
       end
 
+      it '電話番号が全角数字だと保存できないこと' do
+        @user_order.phone_number = '０９００００００００'
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include('Phone number is 10 or 11 digit numbers')
+      end
+
       it 'トークンが必須であること' do
         @user_order.token = nil
         @user_order.valid?
