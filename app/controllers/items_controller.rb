@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_item, except: [:index, :new, :create]
   before_action :move_to_index, only: [:edit, :destroy, :update]
-  before_action :set_item, only: [:edit, :show, :update, :destroy]
+  before_action :purchased_item_move_to_index, only: [:edit, :destroy, :update]
 
   def index
     @items = Item.includes(:user).order(id: 'DESC')
@@ -53,8 +54,12 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  # 出品者以外がアクセスしたときindexに飛ばされる
   def move_to_index
-    item = Item.find(params[:id])
-    redirect_to action: :index unless current_user.id == item.user_id
+    redirect_to root_path unless current_user.id == @item.user_id
+  end
+
+  def purchased_item_move_to_index
+    redirect_to root_path unless @item.order.blank?
   end
 end
