@@ -149,4 +149,6 @@ binding.pryとdebuggerを利用し、どこで処理が滞っているのか、�
 ### Association
 - belongs_to :order
 
+# ER図
+![er](https://user-images.githubusercontent.com/69582233/110313996-9f17bb80-804a-11eb-97e1-619c0f7ab571.png)
 
